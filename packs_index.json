@@ -1,0 +1,395 @@
+{
+  "version": 3,
+  "packs": [
+    {
+      "id": "whatsapp_mochi_peach",
+      "nom": "💬 WhatsApp Mochi Peach Cats",
+      "description": "Les célèbres stickers de chats Mochi animés pour WhatsApp & messages.",
+      "source": "tenor_theme",
+      "theme_query": "mochi cat whatsapp",
+      "nb": 36,
+      "tags": [
+        "whatsapp",
+        "mochi",
+        "peach",
+        "chats",
+        "mignon"
+      ]
+    },
+    {
+      "id": "whatsapp_cute_animated",
+      "nom": "💬 WhatsApp Cute Animated Cats",
+      "description": "Collection haute résolution de chats expressifs et animés pour WhatsApp.",
+      "source": "tenor_theme",
+      "theme_query": "cute cat sticker whatsapp",
+      "nb": 36,
+      "tags": [
+        "whatsapp",
+        "animes",
+        "mignon",
+        "chats"
+      ]
+    },
+    {
+      "id": "whatsapp_pusheen",
+      "nom": "💬 WhatsApp Pusheen & Friends",
+      "description": "Les meilleurs stickers Pusheen prêts pour WhatsApp.",
+      "source": "tenor_theme",
+      "theme_query": "pusheen whatsapp sticker",
+      "nb": 36,
+      "tags": [
+        "whatsapp",
+        "pusheen",
+        "chats"
+      ]
+    },
+    {
+      "id": "bubu_dudu_couple",
+      "nom": "🐻 Bubu & Dudu Lovers",
+      "description": "Les aventures adorables du petit ours Bubu et du panda Dudu.",
+      "source": "tenor_theme",
+      "theme_query": "bubu dudu",
+      "nb": 36,
+      "tags": [
+        "bubu",
+        "dudu",
+        "ours",
+        "panda",
+        "amour",
+        "mignon"
+      ]
+    },
+    {
+      "id": "peach_goma_cats",
+      "nom": "🍑 Peach & Goma Couple",
+      "description": "Les deux chatons amoureux Peach & Goma dans toutes leurs scènes mignonnes.",
+      "source": "tenor_theme",
+      "theme_query": "peach and goma",
+      "nb": 36,
+      "tags": [
+        "peach",
+        "goma",
+        "couple",
+        "amour",
+        "chat",
+        "mignon"
+      ]
+    },
+    {
+      "id": "cute_dogs_shiba",
+      "nom": "🐶 Shiba Inu & Cute Dogs",
+      "description": "Chiens Shiba, Corgis et chiots adorables pour toutes les conversations.",
+      "source": "tenor_theme",
+      "theme_query": "shiba inu cute dog",
+      "nb": 36,
+      "tags": [
+        "chien",
+        "chiens",
+        "shiba",
+        "corgi",
+        "dog",
+        "mignon"
+      ]
+    },
+    {
+      "id": "pepe_frog_memes",
+      "nom": "🐸 Pepe The Frog & Memes",
+      "description": "Les memes cultes de Pepe the Frog, Doge et réactions drôles.",
+      "source": "tenor_theme",
+      "theme_query": "pepe frog meme sticker",
+      "nb": 36,
+      "tags": [
+        "pepe",
+        "frog",
+        "meme",
+        "drole",
+        "reaction",
+        "humour"
+      ]
+    },
+    {
+      "id": "anime_naruto_chibi",
+      "nom": "⚡ Anime & Manga Chibi",
+      "description": "Personnages d'animés cultes en version Chibi et kawaii (Naruto, Luffy...).",
+      "source": "tenor_theme",
+      "theme_query": "anime chibi sticker",
+      "nb": 36,
+      "tags": [
+        "anime",
+        "manga",
+        "naruto",
+        "chibi",
+        "japon"
+      ]
+    },
+    {
+      "id": "pokemon_pikachu_cute",
+      "nom": "🎮 Pokémon & Gaming",
+      "description": "Pikachu, Evoli, Mario et les héros de jeux vidéo en stickers.",
+      "source": "tenor_theme",
+      "theme_query": "pokemon pikachu sticker",
+      "nb": 36,
+      "tags": [
+        "pokemon",
+        "pikachu",
+        "gaming",
+        "mario",
+        "jeu"
+      ]
+    },
+    {
+      "id": "cute_capybara_panda",
+      "nom": "🐼 Capybara, Panda & Animaux",
+      "description": "Capybaras relax, bébés pandas, lapins et hamsters tout mignons.",
+      "source": "tenor_theme",
+      "theme_query": "cute capybara panda",
+      "nb": 36,
+      "tags": [
+        "capybara",
+        "panda",
+        "lapin",
+        "animaux",
+        "mignon"
+      ]
+    },
+    {
+      "id": "love_hearts_romance",
+      "nom": "💖 Amour, Bisous & Coeurs",
+      "description": "Stickers pleins de tendresse, déclarations, coeurs et câlins.",
+      "source": "tenor_theme",
+      "theme_query": "love heart cute sticker",
+      "nb": 36,
+      "tags": [
+        "amour",
+        "love",
+        "coeur",
+        "bisou",
+        "romantique"
+      ]
+    },
+    {
+      "id": "funny_reactions_cat",
+      "nom": "😂 Réactions Drôles & Memes",
+      "description": "Faces choquées, rires, larmes de rire et situations décalées.",
+      "source": "tenor_theme",
+      "theme_query": "funny cat reaction sticker",
+      "nb": 36,
+      "tags": [
+        "drole",
+        "humour",
+        "reaction",
+        "rire",
+        "meme"
+      ]
+    },
+    {
+      "id": "sleepy_dodo_chill",
+      "nom": "😴 Dodo, Sieste & Chill",
+      "description": "Chats endormis, couvertures chaudes et moments détente.",
+      "source": "tenor_theme",
+      "theme_query": "sleeping cute cat cozy",
+      "nb": 36,
+      "tags": [
+        "dodo",
+        "sleep",
+        "nuit",
+        "sieste",
+        "chill",
+        "calme"
+      ]
+    },
+    {
+      "id": "pusheen_classic_hd",
+      "nom": "🐱 Pusheen Classic HD",
+      "description": "La célèbre chatte Pusheen : snacks, farniente et gourmandise.",
+      "source": "tenor_theme",
+      "theme_query": "pusheen cat",
+      "nb": 36,
+      "tags": [
+        "pusheen",
+        "chat",
+        "gourmand",
+        "kawaii"
+      ]
+    },
+    {
+      "id": "manga_neko_kawaii",
+      "nom": "🌸 Neko & Kawaii Japanese Cats",
+      "description": "Dessins manga et chats porte-bonheur japonais stylisés.",
+      "source": "tenor_theme",
+      "theme_query": "neko anime cat kawaii",
+      "nb": 36,
+      "tags": [
+        "manga",
+        "neko",
+        "kawaii",
+        "japon",
+        "anime"
+      ]
+    },
+    {
+      "id": "cute_kittens_baby",
+      "nom": "🍼 Bébés Chatons Tout Doux",
+      "description": "Chatons aux grands yeux étincelants pour faire fondre tout le monde.",
+      "source": "tenor_theme",
+      "theme_query": "cute kitten baby cat",
+      "nb": 36,
+      "tags": [
+        "chaton",
+        "chatons",
+        "kitten",
+        "bebe",
+        "mignon"
+      ]
+    },
+    {
+      "id": "politique_soral",
+      "nom": "🎙️ Alain Soral",
+      "description": "Discours, extraits et reactions autour d'Alain Soral.",
+      "source": "risibank_theme",
+      "theme_query": "alain soral",
+      "nb": 60,
+      "tags": [
+        "extrait",
+        "france",
+        "meme",
+        "memes-fr",
+        "politique",
+        "risibank",
+        "soral"
+      ]
+    },
+    {
+      "id": "politique_zemmour",
+      "nom": "🗳️ Eric Zemmour",
+      "description": "Debats, punchlines et memes autour d'Eric Zemmour.",
+      "source": "risibank_theme",
+      "theme_query": "eric zemmour",
+      "nb": 60,
+      "tags": [
+        "debat",
+        "france",
+        "meme",
+        "memes-fr",
+        "politique",
+        "risibank",
+        "zemmour"
+      ]
+    },
+    {
+      "id": "tv_denis_brogniart",
+      "nom": "🏝️ Denis Brogniart & Koh-Lanta",
+      "description": "Le celebre animateur de Koh-Lanta et ses reactions cultes.",
+      "source": "risibank_theme",
+      "theme_query": "denis brogniart",
+      "nb": 60,
+      "tags": [
+        "animateur",
+        "brogniart",
+        "france",
+        "koh-lanta",
+        "memes-fr",
+        "risibank",
+        "tv"
+      ]
+    },
+    {
+      "id": "meme_risitas",
+      "nom": "😂 Risitas & El Risitas",
+      "description": "Le rire legendaire de Juan Joya Borja et ses memes.",
+      "source": "risibank_theme",
+      "theme_query": "risitas",
+      "nb": 60,
+      "tags": [
+        "espagne",
+        "interview",
+        "meme",
+        "memes-fr",
+        "rire",
+        "risibank",
+        "risitas"
+      ]
+    },
+    {
+      "id": "meme_silverstein",
+      "nom": "🎸 Silverstein",
+      "description": "Silhouettes, ambiance rock et memes Silverstein.",
+      "source": "risibank_theme",
+      "theme_query": "silverstein",
+      "nb": 60,
+      "tags": [
+        "groupe",
+        "meme",
+        "memes-fr",
+        "metal",
+        "risibank",
+        "rock",
+        "silverstein"
+      ]
+    },
+    {
+      "id": "geo_pays_drapeaux",
+      "nom": "🌍 Pays, Drapeaux & Geographie",
+      "description": "Drapeaux, cartes et clins d'oeil sur les pays du monde.",
+      "source": "risibank_theme",
+      "theme_query": "pays",
+      "nb": 60,
+      "tags": [
+        "carte",
+        "drapeaux",
+        "geographie",
+        "memes-fr",
+        "monde",
+        "pays",
+        "risibank"
+      ]
+    },
+    {
+      "id": "culture_histoire",
+      "nom": "🏛️ Histoire & Civilisations",
+      "description": "Antiquite, grands personnages et scenes historiques.",
+      "source": "risibank_theme",
+      "theme_query": "histoire",
+      "nb": 60,
+      "tags": [
+        "antiquite",
+        "civilisation",
+        "culture",
+        "histoire",
+        "history",
+        "memes-fr",
+        "risibank"
+      ]
+    },
+    {
+      "id": "culture_ecriture",
+      "nom": "✍️ Ecriture, Lettres & Mots",
+      "description": "Plumes, calligraphie, lettres et jeux de mots.",
+      "source": "risibank_theme",
+      "theme_query": "ecriture",
+      "nb": 57,
+      "tags": [
+        "calligraphie",
+        "ecriture",
+        "lettres",
+        "memes-fr",
+        "mots",
+        "risibank",
+        "writing"
+      ]
+    },
+    {
+      "id": "risibank_trending",
+      "nom": "🔥 Risibank - Tendances du moment",
+      "description": "Le meilleur des memes francophones du moment, mis a jour en direct par Risibank.",
+      "source": "risibank_trending",
+      "nb": 80,
+      "tags": [
+        "risibank",
+        "memes-fr",
+        "tendances",
+        "francais"
+      ]
+    }
+  ]
+}

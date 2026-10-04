@@ -1,0 +1,27 @@
+# Données personnelles et réglages locaux
+.prefs.json
+favoris.json
+langue.json
+.routes_reseau.json
+.dernier_nettoyage
+
+# Caches générés (volumineux)
+.cache_premult/
+.cache_vignettes/
+.cache_recherche.json
+.index_recherche.json
+__pycache__/
+
+# Collections d'images de l'utilisateur
+stickers/
+memes/
+
+# Sauvegardes, journaux et binaires compilés
+*.bak
+*.bak-*
+*.log
+err.txt
+*.exe
+build/
+dist/
+*.spec
