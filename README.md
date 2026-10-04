@@ -11,7 +11,18 @@
 
 </div>
 
+<p align="center"><img src="docs/capture.png" alt="Capture d'écran de Stickaru" width="860"></p>
+
 ---
+
+## 📥 Télécharger
+
+Va dans l'onglet **[Releases](../../releases/latest)** et télécharge :
+
+- **`Stickaru-Setup.exe`** : installateur (installe dans ton profil, crée les raccourcis du menu Démarrer et du Bureau, aucun droit administrateur nécessaire) ;
+- **`Stickaru.exe`** : version portable, à lancer directement.
+
+> Windows peut afficher « SmartScreen a protégé votre ordinateur » : les exécutables ne sont pas signés. Clique sur *Informations complémentaires → Exécuter quand même*.
 
 ## ✨ Fonctions
 
@@ -63,6 +74,8 @@ packs_index.json  index de packs Telegram conseillés
 sources.py        sources en accès libre (Tenor, GIPHY, Telegram/combot, RisiBank, URL)
 langue.py         traductions de l'interface (fr / en / zh)
 chat_volant.py    widget de bureau
+installer/        sources de l'installateur Windows (Python + PyInstaller)
+docs/capture.png  capture d'écran
 ```
 
 Les dossiers `stickers/`, `memes/` et les caches ne sont pas dans le dépôt : ils sont créés et remplis à l'usage.
