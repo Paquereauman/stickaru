@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🐱 Stickaru
+# <img src="chat_logo.png" alt="" height="46" align="absmiddle">&nbsp;Stickaru
 
 ### Your sticker and meme library for Windows: search, click, paste.
 
