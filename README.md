@@ -62,7 +62,7 @@ packs_index.json  index of recommended Telegram packs
 sources.py        open-access sources (Tenor, GIPHY, Telegram/combot, RisiBank, URL)
 langue.py         interface translations (fr / en / zh)
 installer/        Windows installer sources (Python + PyInstaller)
-docs/capture.png  screenshot
+docs/demo.gif      screenshot
 ```
 
 The `stickers/` and `memes/` folders and the caches are not in the repository: they are created and filled as you use the app.

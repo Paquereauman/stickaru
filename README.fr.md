@@ -62,7 +62,7 @@ packs_index.json  index de packs Telegram conseillés
 sources.py        sources en accès libre (Tenor, GIPHY, Telegram/combot, RisiBank, URL)
 langue.py         traductions de l'interface (fr / en / zh)
 installer/        sources de l'installateur Windows (Python + PyInstaller)
-docs/capture.png  capture d'écran
+docs/demo.gif      capture d'écran
 ```
 
 Les dossiers `stickers/`, `memes/` et les caches ne sont pas dans le dépôt : ils sont créés et remplis à l'usage.
