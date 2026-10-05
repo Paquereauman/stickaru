@@ -1438,9 +1438,9 @@ class Bibliotheque:
 
         n = self.fp.render(langue.T("{n} stickers").format(n=self.total_local),
                            True, SOUS)
-        e.blit(n, (p(18), self.haut - p(30)))
+        e.blit(n, (p(18), self.haut - p(36)))
         tg = self.fp.render("GitHub v" + sources.VERSION, True, ACCENT_D)
-        self.zone_github = tg.get_rect(topleft=(p(18), self.haut - p(14)))
+        self.zone_github = tg.get_rect(topleft=(p(18), self.haut - p(20)))
         e.blit(tg, self.zone_github)
         pygame.draw.line(e, ACCENT_D, self.zone_github.bottomleft,
                          self.zone_github.bottomright)
