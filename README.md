@@ -14,7 +14,7 @@
 
 </div>
 
-<p align="center"><img src="docs/demo.gif" alt="Stickaru demo: search, click, copied" width="860"></p>
+<p align="center"><img src="docs/demo.gif" alt="Stickaru demo: search, click, copied" width="600"></p>
 
 ---
 
