@@ -36,27 +36,12 @@ Va dans l'onglet **[Releases](../../releases/latest)** et télécharge :
 | 🔗 **Import par URL** | Colle l'adresse d'un sticker, d'un GIF ou d'un pack pour l'ajouter. |
 | 🌍 **Interface multilingue** | Français, anglais et chinois (`langue.py`). |
 | 🖥️ **Rendu net** | Prise en charge du DPI par écran (Windows 10/11), thème clair. |
-| 🐈 **Chat volant** | Un petit widget de bureau transparent, toujours au premier plan, qui fait défiler tes stickers. |
-
-## 🐈 Le Chat volant (`chat_volant.py`)
-
-| Commande | Action |
-|---|---|
-| Glisser | déplacer le chat |
-| Clic gauche / droit | sticker suivant / précédent |
-| Molette | changer de sticker |
-| `B` ou bouton **+** | ouvrir la bibliothèque en ligne |
-| `R` | recharger les stickers du dossier |
-| Double-clic, `Échap`, `Q` | quitter |
-
-Dépose tes propres PNG (fond transparent) dans le dossier `stickers/`.
 
 ## 🚀 Installation
 
 ```bash
 pip install -r requirements.txt
-python bibliotheque.py     # la bibliothèque
-python chat_volant.py      # le widget de bureau
+python bibliotheque.py
 ```
 
 ### Créer un exécutable (exemple)
@@ -75,7 +60,6 @@ bibliotheque.py   interface principale (recherche, presse-papiers, favoris)
 packs_index.json  index de packs Telegram conseillés
 sources.py        sources en accès libre (Tenor, GIPHY, Telegram/combot, RisiBank, URL)
 langue.py         traductions de l'interface (fr / en / zh)
-chat_volant.py    widget de bureau
 installer/        sources de l'installateur Windows (Python + PyInstaller)
 docs/capture.png  capture d'écran
 ```

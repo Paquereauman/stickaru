@@ -1736,8 +1736,11 @@ def risibank_trending(max_urls=80):
     return urls
 
 
-PACKS_INDEX_URL = ("https://raw.githubusercontent.com/bpaquereau/"
-                   "cat-stickers-packs/main/packs_index.json")
+VERSION = "1.1.0"
+URL_GITHUB = "https://github.com/Paquereauman/stickaru"
+
+PACKS_INDEX_URL = ("https://raw.githubusercontent.com/Paquereauman/"
+                   "stickaru/main/packs_index.json")
 FICHIER_PACKS_LOCAL = os.path.join(DOSSIER_BASE, "packs_index.json")
 
 
@@ -1892,14 +1895,14 @@ def precharger_populaires_worker(file_q=None):
 
 # ====================================================== NETTOYAGE CACHES ==
 MAX_CACHE_WEB = 200 * 1024 * 1024      # images web telechargees (octets)
-AGE_MAX_PREMULT = 30 * 86400           # rendus du chat volant (secondes)
+AGE_MAX_PREMULT = 30 * 86400           # rendus pre-multiplies (secondes)
 _FICHIER_NETTOYAGE = os.path.join(DOSSIER_BASE, ".dernier_nettoyage")
 
 
 def nettoyer_caches(file_q=None):
     """Une fois par jour : limite le cache d'images web (les moins
     recemment utilisees partent d'abord) et supprime les vieux rendus
-    du chat volant. Tout est regenerable a la demande."""
+    de l'affichage. Tout est regenerable a la demande."""
     import time
     try:
         if time.time() - os.path.getmtime(_FICHIER_NETTOYAGE) < 86400:

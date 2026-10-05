@@ -250,7 +250,7 @@ class Bibliotheque:
         self.zones_bib_retrait = []
         self.ecran = pygame.display.set_mode((self.larg, self.haut),
                                              pygame.RESIZABLE)
-        pygame.display.set_caption("Stickaru")
+        pygame.display.set_caption("Stickaru v" + sources.VERSION)
         pygame.key.set_repeat(350, 35)   # maintien de Retour arriere, fleches
         self._centrer()
         self._forcer_icone_fenetre()
@@ -1109,6 +1109,9 @@ class Bibliotheque:
 
         if x < self.sb:
             if bouton == 1:
+                if self.zone_github.collidepoint(pos):
+                    os.startfile(sources.URL_GITHUB)
+                    return
                 for code, r in self.zones_langue:
                     if r.collidepoint(pos):
                         if code == "cycle":
@@ -1182,6 +1185,7 @@ class Bibliotheque:
         self.zones_nav = []
         self.zones_btn = []
         self.zones_langue = []
+        self.zone_github = pygame.Rect(0, 0, 0, 0)
         self.zones_input = []
         self.zones_grille = []
         self.zones_liste = []
@@ -1435,6 +1439,11 @@ class Bibliotheque:
         n = self.fp.render(langue.T("{n} stickers").format(n=self.total_local),
                            True, SOUS)
         e.blit(n, (p(18), self.haut - p(30)))
+        tg = self.fp.render("GitHub v" + sources.VERSION, True, ACCENT_D)
+        self.zone_github = tg.get_rect(topleft=(p(18), self.haut - p(14)))
+        e.blit(tg, self.zone_github)
+        pygame.draw.line(e, ACCENT_D, self.zone_github.bottomleft,
+                         self.zone_github.bottomright)
 
     def _dessiner_bascule_sb(self, e):
         """Languette sur le bord gauche : masque/affiche la sidebar."""

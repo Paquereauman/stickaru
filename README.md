@@ -36,27 +36,12 @@ Go to the **[Releases](../../releases/latest)** tab and download:
 | 🔗 **Import by URL** | Paste the address of a sticker, a GIF or a pack to add it. |
 | 🌍 **Multilingual interface** | French, English and Chinese (`langue.py`). |
 | 🖥️ **Sharp rendering** | Per-monitor DPI support (Windows 10/11), light theme. |
-| 🐈 **Flying cat** | A small transparent desktop widget, always on top, that cycles through your stickers. |
-
-## 🐈 The Flying Cat (`chat_volant.py`)
-
-| Control | Action |
-|---|---|
-| Drag | move the cat |
-| Left / right click | next / previous sticker |
-| Mouse wheel | change sticker |
-| `B` or the **+** button | open the online library |
-| `R` | reload the stickers from the folder |
-| Double-click, `Esc`, `Q` | quit |
-
-Drop your own PNG files (transparent background) into the `stickers/` folder.
 
 ## 🚀 Installation
 
 ```bash
 pip install -r requirements.txt
-python bibliotheque.py     # the library
-python chat_volant.py      # the desktop widget
+python bibliotheque.py
 ```
 
 ### Build an executable (example)
@@ -75,7 +60,6 @@ bibliotheque.py   main interface (search, clipboard, favourites)
 packs_index.json  index of recommended Telegram packs
 sources.py        open-access sources (Tenor, GIPHY, Telegram/combot, RisiBank, URL)
 langue.py         interface translations (fr / en / zh)
-chat_volant.py    desktop widget
 installer/        Windows installer sources (Python + PyInstaller)
 docs/capture.png  screenshot
 ```
