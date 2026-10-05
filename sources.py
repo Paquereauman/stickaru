@@ -159,12 +159,34 @@ def _sauver_anim(url, raw):
         pass
 
 
+def _marquer_anim(url):
+    """Note que l'original a deja ete examine (anime ou non)."""
+    try:
+        open(_chemin_anim(url) + ".vu", "wb").close()
+    except Exception:
+        pass
+
+
+def _completer_anim(url, timeout):
+    """Image deja en cache PNG (ancienne version) : retelecharge l'original
+    une seule fois pour retrouver l'animation."""
+    if os.path.exists(_chemin_anim(url) + ".vu") or os.path.exists(_chemin_anim(url)):
+        return
+    try:
+        _sauver_anim(url, _http(url, timeout=timeout))
+    except Exception:
+        return
+    _marquer_anim(url)
+
+
 def decoder_anim(url, cote=256, max_images=80):
     """Decode l'animation en cache : ([(octets RGBA, (l, h), duree_ms)], total_ms),
     ou None si l'image n'est pas animee."""
     chemin = _chemin_anim(url)
     if not os.path.exists(chemin):
-        return None
+        _completer_anim(url, 8)
+        if not os.path.exists(chemin):
+            return None
     try:
         from PIL import Image, ImageSequence
         im = Image.open(chemin)
@@ -197,6 +219,7 @@ def fetch_image_png(url, timeout=8):
     """Recupere une image (depuis le cache disque si dispo, sinon web + cache)."""
     cached = charger_image_cache(url)
     if cached:
+        _completer_anim(url, timeout)
         return cached
     try:
         raw = _http(url, timeout=timeout)
@@ -204,6 +227,7 @@ def fetch_image_png(url, timeout=8):
         if png:
             sauver_image_cache(url, png)
             _sauver_anim(url, raw)
+            _marquer_anim(url)
         return png
     except Exception:
         return None
