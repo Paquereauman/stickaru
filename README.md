@@ -8,6 +8,7 @@
 
 ![windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![version](https://img.shields.io/github/v/release/Paquereauman/stickaru?style=for-the-badge&color=2bb673)
 ![pygame](https://img.shields.io/badge/pygame-interface-2bb673?style=for-the-badge)
 ![api key](https://img.shields.io/badge/API%20key-none-f4a300?style=for-the-badge)
 
@@ -51,7 +52,7 @@ pip install pyinstaller
 pyinstaller --noconsole --onefile --icon chat.ico --name Stickaru bibliotheque.py
 ```
 
-`lancer.bat` then starts `Stickaru.exe`.
+Or simply run the portable `Stickaru.exe` from the [Releases](../../releases/latest) page.
 
 ## 🗂️ Structure
 
@@ -66,12 +67,18 @@ docs/capture.png  screenshot
 
 The `stickers/` and `memes/` folders and the caches are not in the repository: they are created and filled as you use the app.
 
+## 🤝 Contributing
+
+- **Bug or idea?** Open an [issue](https://github.com/Paquereauman/stickaru/issues).
+- **Add a Telegram pack:** edit `packs_index.json` and open a pull request.
+- See the [changelog](CHANGELOG.md) for what changed in each version.
+
 ## ⚠️ Good to know
 
 Stickers belong to their authors. Stickaru only searches public content and copies it for personal use; please respect the terms of use of the sites it queries.
 
 <div align="center">
 
-*Made with 🐱 and pygame.*
+[Source code](https://github.com/Paquereauman/stickaru) · [Releases](https://github.com/Paquereauman/stickaru/releases) · [MIT License](LICENSE)
 
 </div>
