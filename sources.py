@@ -132,6 +132,67 @@ def sauver_image_cache(url, png_data):
         pass
 
 
+def _chemin_anim(url):
+    return os.path.join(DOSSIER_CACHE, f"web_{_cle_url_cache(url)}.anim")
+
+
+MAX_ANIM_OCTETS = 4_000_000
+
+
+def _sauver_anim(url, raw):
+    """Garde l'original d'un GIF/WebP anime pour jouer l'animation dans la grille."""
+    try:
+        if not isinstance(raw, bytes) or len(raw) > MAX_ANIM_OCTETS:
+            return
+        if raw[:3] != b"GIF" and not (raw[:4] == b"RIFF" and raw[8:12] == b"WEBP"):
+            return
+        from PIL import Image
+        if getattr(Image.open(io.BytesIO(raw)), "n_frames", 1) < 2:
+            return
+        os.makedirs(DOSSIER_CACHE, exist_ok=True)
+        chemin = _chemin_anim(url)
+        tmp = chemin + ".tmp"
+        with open(tmp, "wb") as f:
+            f.write(raw)
+        os.replace(tmp, chemin)
+    except Exception:
+        pass
+
+
+def decoder_anim(url, cote=256, max_images=80):
+    """Decode l'animation en cache : ([(octets RGBA, (l, h), duree_ms)], total_ms),
+    ou None si l'image n'est pas animee."""
+    chemin = _chemin_anim(url)
+    if not os.path.exists(chemin):
+        return None
+    try:
+        from PIL import Image, ImageSequence
+        im = Image.open(chemin)
+        n = getattr(im, "n_frames", 1)
+        if n < 2:
+            return None
+        pas = max(1, -(-n // max_images))     # garde au plus max_images images
+        gif = (im.format == "GIF")
+        sans_alpha = None
+        frames, cumul, total = [], 0, 0
+        for k, fr in enumerate(ImageSequence.Iterator(im)):
+            cumul += max(20, fr.info.get("duration", 100) or 100)
+            if k % pas:
+                continue
+            rgba = fr.convert("RGBA")
+            if gif and sans_alpha is None:
+                sans_alpha = (np_alpha(rgba) < 250).mean() <= 0.01
+            if gif and sans_alpha:
+                rgba = _retirer_fond_blanc(rgba)
+            rgba.thumbnail((cote, cote))
+            frames.append((rgba.tobytes(), rgba.size, cumul))
+            total += cumul
+            cumul = 0
+        return frames, total
+    except Exception:
+        return None
+
+
 def fetch_image_png(url, timeout=8):
     """Recupere une image (depuis le cache disque si dispo, sinon web + cache)."""
     cached = charger_image_cache(url)
@@ -142,6 +203,7 @@ def fetch_image_png(url, timeout=8):
         png = convertir_png(raw)
         if png:
             sauver_image_cache(url, png)
+            _sauver_anim(url, raw)
         return png
     except Exception:
         return None

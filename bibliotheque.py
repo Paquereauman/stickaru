@@ -14,6 +14,7 @@ import json
 import ctypes
 from ctypes import wintypes
 import pygame
+from concurrent.futures import ThreadPoolExecutor
 
 import sources
 import langue
@@ -257,6 +258,10 @@ class Bibliotheque:
         self._masquer_titre()
 
         self.horloge = pygame.time.Clock()
+        self._anims = {}              # url -> (box, [(surface, fin_ms)], total_ms) | None
+        self._anims_attente = {}      # url -> future de decodage
+        self._anim_pool = ThreadPoolExecutor(2)
+        self._anim_visible = False
 
         self.vue = "recherche"
         self.actif = True
@@ -757,10 +762,12 @@ class Bibliotheque:
             self.status = "Suppression des stickers flous..."
             self._lancer(sources.supprimer_flous_worker)
         self._poll()
+        self._anim_visible = False
         self._dessiner()
         pygame.display.flip()
         inactif = pygame.time.get_ticks() - getattr(self, "_dernier_actif", 0)
-        self.horloge.tick(60 if inactif < 1500 else 20)
+        self.horloge.tick(60 if inactif < 1500 else
+                          30 if self._anim_visible else 20)
 
     def _maj_sidebar(self):
         self.compact = self.wl < SEUIL_COMPACT
@@ -991,6 +998,51 @@ class Bibliotheque:
         if len(cache) > 400:
             cache.clear()
         cache[cle] = (box, surf)
+        return surf
+
+    def _anim_surf(self, url, box):
+        """Image courante de l'animation de `url` (None si pas animee ou pas
+        encore decodee). Le decodage se fait en tache de fond."""
+        entree = self._anims.get(url, False)
+        if entree is False:
+            fut = self._anims_attente.get(url)
+            if fut is None:
+                self._anims_attente[url] = self._anim_pool.submit(
+                    sources.decoder_anim, url)
+                return None
+            if not fut.done():
+                return None
+            del self._anims_attente[url]
+            res = fut.result()
+            if len(self._anims) > 60:
+                self._anims.clear()
+            if not res:
+                self._anims[url] = None
+                return None
+            frames = []
+            fin = 0
+            for data, taille, duree in res[0]:
+                fin += duree
+                frames.append((pygame.image.frombuffer(
+                    data, taille, "RGBA").convert_alpha(), fin))
+            entree = self._anims[url] = [None, frames, fin]
+        if entree is None:
+            return None
+        if entree[0] != box:              # remise a l'echelle une fois par taille
+            mises = []
+            for surf, fin in entree[1]:
+                iw, ih = surf.get_size()
+                kk = min(box / iw, box / ih, 1.0)
+                if kk < 1.0:
+                    surf = pygame.transform.smoothscale(
+                        surf, (max(1, int(iw * kk)), max(1, int(ih * kk))))
+                mises.append((surf, fin))
+            entree[0], entree[1] = box, mises
+        self._anim_visible = True
+        t = pygame.time.get_ticks() % max(1, entree[2])
+        for surf, fin in entree[1]:
+            if t < fin:
+                break
         return surf
 
     def _precharger_hd(self):
@@ -1679,7 +1731,11 @@ class Bibliotheque:
             if item.get("png_hd") or item.get("png"):
                 src = item.get("png_hd") or item.get("png")
                 cle = item["url"] + ("/hd" if item.get("png_hd") else "")
-                img = self._surf_de(self._surfs_web, cle, src, cell - p(14))
+                img = None
+                if not item.get("local"):
+                    img = self._anim_surf(item["url"], cell - p(14))
+                if img is None:
+                    img = self._surf_de(self._surfs_web, cle, src, cell - p(14))
                 if img is not None:
                     e.blit(img, img.get_rect(center=r.center))
                 else:
