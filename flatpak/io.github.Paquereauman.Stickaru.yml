@@ -29,6 +29,16 @@ modules:
         url: https://github.com/bugaevc/wl-clipboard/archive/refs/tags/v2.2.1.tar.gz
         sha256: 6eb8081207fb5581d1d82c4bcd9587205a31a3d47bea3ebeb7f41aa1143783eb
 
+  - name: libXmu
+    buildsystem: autotools
+    config-opts:
+      - --disable-static
+    cleanup: [/include, '*.la']
+    sources:
+      - type: archive
+        url: https://www.x.org/releases/individual/lib/libXmu-1.2.1.tar.xz
+        sha256: fcb27793248a39e5fcc5b9c4aec40cc0734b3ca76aac3d7d1c264e7f7e14e8b2
+
   - name: xclip
     buildsystem: autotools
     sources:
