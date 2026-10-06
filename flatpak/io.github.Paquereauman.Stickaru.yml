@@ -1,0 +1,48 @@
+app-id: io.github.Paquereauman.Stickaru
+runtime: org.freedesktop.Platform
+runtime-version: '24.08'
+sdk: org.freedesktop.Sdk
+command: stickaru
+
+finish-args:
+  - --share=network
+  - --share=ipc
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+
+modules:
+  - name: python-deps
+    buildsystem: simple
+    build-options:
+      build-args:
+        - --share=network
+    build-commands:
+      - pip3 install --prefix=/app --no-cache-dir pygame Pillow
+
+  - name: wl-clipboard
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://github.com/bugaevc/wl-clipboard/archive/refs/tags/v2.2.1.tar.gz
+        sha256: 6eb8081207fb5581d1d82c4bcd9587205a31a3d47bea3ebeb7f41aa1143783eb
+
+  - name: xclip
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://github.com/astrand/xclip/archive/refs/tags/0.13.tar.gz
+        sha256: ca5b8804e3c910a66423a882d79bf3c9450b875ac8528791fb60ec9de667f758
+
+  - name: stickaru
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 bibliotheque.py sources.py langue.py packs_index.json chat.ico -t /app/share/stickaru
+      - install -Dm755 flatpak/stickaru.sh /app/bin/stickaru
+      - install -Dm644 flatpak/io.github.Paquereauman.Stickaru.desktop -t /app/share/applications
+      - install -Dm644 flatpak/io.github.Paquereauman.Stickaru.metainfo.xml -t /app/share/metainfo
+      - install -Dm644 chat_logo.png /app/share/icons/hicolor/512x512/apps/io.github.Paquereauman.Stickaru.png
+    sources:
+      - type: dir
+        path: ..
+        skip: [.git, build, dist, stickers, memes, docs, installer, flatpak-build, .flatpak-builder]

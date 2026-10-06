@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Stickaru
+Comment=Sticker and meme library: search, click, paste
+Exec=stickaru
+Icon=io.github.Paquereauman.Stickaru
+Categories=Graphics;Utility;
+Terminal=false
+StartupWMClass=bibliotheque.py

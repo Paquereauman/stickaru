@@ -19,6 +19,17 @@ from concurrent.futures import ThreadPoolExecutor
 import sources
 import langue
 
+WIN = sys.platform == "win32"
+
+
+def ouvrir_url(url):
+    if WIN:
+        os.startfile(url)
+    else:
+        import webbrowser
+        webbrowser.open(url)
+
+
 CF_DIB = 8
 GMEM_MOVEABLE = 2
 BI_BITFIELDS = 3
@@ -28,6 +39,8 @@ LCS_WINDOWS_COLOR_SPACE = 0x57696E20   # "Win "
 # ------------------------------------------------------------ DPI / echelle
 def dpi_awareness():
     """Per-monitor v2 avant creation de la fenetre (rendu net, pas de flou)."""
+    if not WIN:
+        return
     u = ctypes.windll.user32
     try:
         u.SetProcessDpiAwarenessContext(ctypes.c_void_p(-4))
@@ -57,7 +70,7 @@ def dpi_systeme():
     try:
         return ctypes.windll.user32.GetDpiForSystem() / 96.0
     except Exception:
-        return 1.0
+        return 1.0   # hors Windows : SDL gere l'echelle
 
 
 class BITMAPV5HEADER(ctypes.Structure):
@@ -76,13 +89,32 @@ class BITMAPV5HEADER(ctypes.Structure):
         ("bV5ProfileSize", wintypes.DWORD), ("bV5Reserved", wintypes.DWORD)]
 
 
+def _copier_linux(png_data):
+    """Linux : wl-copy (Wayland) ou xclip (X11), image/png."""
+    import subprocess
+    import shutil
+    if os.environ.get("WAYLAND_DISPLAY") and shutil.which("wl-copy"):
+        cmd = ["wl-copy", "--type", "image/png"]
+    elif shutil.which("xclip"):
+        cmd = ["xclip", "-selection", "clipboard", "-t", "image/png"]
+    else:
+        raise OSError("wl-copy / xclip introuvable")
+    # wl-copy / xclip restent en arriere-plan pour servir le presse-papiers
+    p = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.DEVNULL,
+                         stderr=subprocess.DEVNULL, start_new_session=True)
+    p.stdin.write(png_data)
+    p.stdin.close()
+
+
 def copier_image_presse_papiers(png_data):
     """Copie une image dans le presse-papiers Windows.
     Deux formats : PNG (Telegram/Discord/WhatsApp/web) + CF_DIB alpha
     (Paint, Office, Pillow). Transparence conservee, image agrandie en HD."""
+    png_data = sources.preparer_image(png_data)
+    if not WIN:
+        return _copier_linux(png_data)
     import numpy as np
     from PIL import Image
-    png_data = sources.preparer_image(png_data)
     im = Image.open(io.BytesIO(png_data)).convert("RGBA")
     w, h = im.size
     arr = np.frombuffer(im.tobytes(), np.uint8).reshape(h, w, 4)
@@ -1162,7 +1194,7 @@ class Bibliotheque:
         if x < self.sb:
             if bouton == 1:
                 if self.zone_github.collidepoint(pos):
-                    os.startfile(sources.URL_GITHUB)
+                    ouvrir_url(sources.URL_GITHUB)
                     return
                 for code, r in self.zones_langue:
                     if r.collidepoint(pos):

@@ -13,7 +13,7 @@ import sys
 import json
 
 DOSSIER = (os.path.dirname(sys.executable) if getattr(sys, "frozen", False) else os.path.dirname(os.path.abspath(__file__)))
-FICHIER = os.path.join(DOSSIER, "langue.json")
+FICHIER = os.path.join(os.environ.get("STICKARU_DATA") or DOSSIER, "langue.json")
 
 CODES = ("fr", "en", "zh")
 ETIQUETTES = {"fr": "FR", "en": "EN", "zh": "中文"}

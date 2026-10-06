@@ -20,7 +20,10 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 
 import langue
 
-DOSSIER_BASE = (os.path.dirname(sys.executable) if getattr(sys, "frozen", False) else os.path.dirname(os.path.abspath(__file__)))
+DOSSIER_RES = (os.path.dirname(sys.executable) if getattr(sys, "frozen", False) else os.path.dirname(os.path.abspath(__file__)))
+# donnees utilisateur : STICKARU_DATA (Flatpak, Linux) sinon dossier de l'appli
+DOSSIER_BASE = os.environ.get("STICKARU_DATA") or DOSSIER_RES
+os.makedirs(DOSSIER_BASE, exist_ok=True)
 DOSSIER_STICKERS = os.path.join(DOSSIER_BASE, "stickers")
 DOSSIER_CACHE = os.path.join(DOSSIER_BASE, ".cache_vignettes")
 FICHIER_CONFIG = os.path.join(DOSSIER_BASE, "biblios.json")
@@ -1832,11 +1835,13 @@ FICHIER_PACKS_LOCAL = os.path.join(DOSSIER_BASE, "packs_index.json")
 
 def charger_catalogue_packs():
     """Index des packs : chargement local immediat (0 ms, 0 reseau)."""
-    try:
-        with open(FICHIER_PACKS_LOCAL, "r", encoding="utf-8") as f:
-            return json.load(f).get("packs", [])
-    except Exception:
-        pass
+    for chemin in (FICHIER_PACKS_LOCAL,
+                   os.path.join(DOSSIER_RES, "packs_index.json")):
+        try:
+            with open(chemin, "r", encoding="utf-8") as f:
+                return json.load(f).get("packs", [])
+        except Exception:
+            pass
     return []
 
 

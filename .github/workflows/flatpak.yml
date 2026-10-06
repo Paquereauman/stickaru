@@ -1,0 +1,33 @@
+name: Flatpak
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install flatpak-builder
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder
+          flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+      - name: Build
+        run: |
+          flatpak-builder --user --force-clean --install-deps-from=flathub \
+            --repo=repo build-dir flatpak/io.github.Paquereauman.Stickaru.yml
+          flatpak build-bundle repo Stickaru.flatpak io.github.Paquereauman.Stickaru
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Stickaru.flatpak
+          path: Stickaru.flatpak
+      - name: Attach to release
+        if: startsWith(github.ref, 'refs/tags/')
+        run: gh release upload "${GITHUB_REF_NAME}" Stickaru.flatpak --clobber
+        env:
+          GH_TOKEN: ${{ github.token }}

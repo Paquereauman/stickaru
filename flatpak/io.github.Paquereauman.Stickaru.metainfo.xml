@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.Paquereauman.Stickaru</id>
+  <name>Stickaru</name>
+  <summary>Sticker and meme library: search, click, paste</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <description>
+    <p>Search stickers (Tenor, GIPHY, Telegram packs, RisiBank), click one to copy it to the clipboard, then paste it anywhere.</p>
+  </description>
+  <launchable type="desktop-id">io.github.Paquereauman.Stickaru.desktop</launchable>
+  <url type="homepage">https://github.com/Paquereauman/stickaru</url>
+  <url type="bugtracker">https://github.com/Paquereauman/stickaru/issues</url>
+  <content_rating type="oars-1.1"/>
+  <releases>
+    <release version="1.1.0" date="2026-09-25"/>
+  </releases>
+</component>
