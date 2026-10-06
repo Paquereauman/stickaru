@@ -18,7 +18,7 @@ modules:
       build-args:
         - --share=network
     build-commands:
-      - pip3 install --prefix=/app --no-cache-dir pygame Pillow
+      - pip3 install --prefix=/app --no-cache-dir pygame Pillow numpy
 
   - name: wl-clipboard
     buildsystem: meson
