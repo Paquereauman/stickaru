@@ -22,6 +22,21 @@ jobs:
           flatpak-builder --user --force-clean --install-deps-from=flathub \
             --repo=repo build-dir flatpak/io.github.Paquereauman.Stickaru.yml
           flatpak build-bundle repo Stickaru.flatpak io.github.Paquereauman.Stickaru
+      - name: Smoke test
+        run: |
+          sudo apt-get install -y xvfb
+          flatpak --user install -y --noninteractive --bundle Stickaru.flatpak
+          xvfb-run -a flatpak run --command=python3 io.github.Paquereauman.Stickaru -c "
+          import os,sys
+          sys.path.insert(0,'/app/share/stickaru')
+          os.environ['SDL_AUDIODRIVER']='dummy'
+          import pygame; pygame.init()
+          import bibliotheque
+          b=bibliotheque.Bibliotheque()
+          print('OK', pygame.display.get_caption())
+          bibliotheque.copier_image_presse_papiers(open('/app/share/icons/hicolor/512x512/apps/io.github.Paquereauman.Stickaru.png','rb').read())
+          print('CLIP OK')
+          "
       - uses: actions/upload-artifact@v4
         with:
           name: Stickaru.flatpak
