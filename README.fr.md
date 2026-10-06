@@ -82,3 +82,12 @@ Les stickers appartiennent à leurs auteurs. Stickaru ne fait que rechercher des
 [Code source](https://github.com/Paquereauman/stickaru) · [Releases](https://github.com/Paquereauman/stickaru/releases) · [Licence MIT](LICENSE)
 
 </div>
+
+## Linux (Flatpak)
+
+Téléchargez `Stickaru.flatpak` depuis la page [Releases](https://github.com/Paquereauman/stickaru/releases), puis :
+
+```bash
+flatpak install --user Stickaru.flatpak
+flatpak run io.github.Paquereauman.Stickaru
+```
