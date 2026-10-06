@@ -26,7 +26,7 @@ jobs:
         run: |
           sudo apt-get install -y xvfb
           flatpak --user install -y --noninteractive --bundle Stickaru.flatpak
-          xvfb-run -a flatpak run --command=python3 io.github.Paquereauman.Stickaru -c "
+          xvfb-run -a flatpak run --env=STICKARU_DATA=/tmp/stk --command=python3 io.github.Paquereauman.Stickaru -c "
           import os,sys
           sys.path.insert(0,'/app/share/stickaru')
           os.environ['SDL_AUDIODRIVER']='dummy'
